@@ -118,6 +118,11 @@
   aspect-ratio: 1;
   display: flex;
   color: var(--foreground);
+  transition: scale 0.2s ease-in;
+
+  @include hover {
+    scale: 1.1;
+  }
 }
 
 .cfpCard {
@@ -170,6 +175,12 @@
   border-radius: 8px;
 
   cursor: pointer;
+
+  transition: background-color 0.2s ease-in;
+
+  @include hover {
+    background-color: rgba(0 0 0 / 10%);
+  }
 }
 
 .tbaIcon {
