@@ -1,0 +1,240 @@
+// Layout
+.hero {
+  --title-fs: clamp(40px, 12vw, 221px);
+  --title-lh: 0.9;
+
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols-count), 1fr);
+  container-type: inline-size;
+  container-name: hero-container;
+
+  grid-template-rows: 1fr calc(var(--title-fs) * var(--title-lh) * 1.4) min-content min-content min-content 1fr min-content;
+
+  min-height: 100vh;
+  padding-block: var(--header-h) 40px;
+
+  &__title {
+    grid-column: 1 / -1;
+    grid-row: 2 / 6;
+    margin: 0;
+  }
+
+  &__date {
+    grid-column: 3 / 4;
+    grid-row: 3;
+    margin: 0;
+  }
+
+  &__button {
+    grid-column: 3 / 4;
+    grid-row: 4;
+    margin-block: clamp(16px, 2.5vw, 24px);
+  }
+
+  &__lead {
+    grid-column: 3 / 4;
+    grid-row: 5;
+    margin: 0;
+  }
+
+  &__social {
+    grid-column: 1 / 2;
+    grid-row: 7;
+  }
+
+  &__indicators {
+    grid-column: 2 / 5;
+    grid-row: 7;
+
+  }
+
+  &__date,
+  &__button,
+  &__lead {
+    margin-inline: 1rem;
+  }
+
+  &__social,
+  &__indicators {
+    align-self: end;
+  }
+
+  @container hero-container (max-width: 1000px) {
+    .hero__date,
+    .hero__button,
+    .hero__lead {
+      grid-column: 3 / 5;
+    }
+  }
+}
+
+// Elements
+.title {
+  font-size: var(--title-fs);
+  line-height: var(--title-lh);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-stretch: 125%;
+  line-height: 0.9;
+  letter-spacing: -2%;
+  text-transform: uppercase;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: clamp(16px, 14px + 0.5vw, 24px);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.button {
+  font-family: "Mona Sans", sans-serif;
+  font-weight: 500;
+  font-size: clamp(24px, 1vw + 20px, 40px);
+  line-height: 0.9;
+
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 1vw + 20px, 40px);
+
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  @include hover {
+    background-color: rgba(0 0 0 / 60%);
+  }
+}
+
+.lead {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: clamp(16px, 15px + 0.25vw, 20px);
+  line-height: 1.2;
+}
+
+.social {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__item {
+    width: clamp(20px, 5vw, 26px);
+    aspect-ratio: 1;
+  }
+}
+
+.indicators {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    padding-inline: clamp(12px, 1.5vw, 20px);
+    border-left: 2px solid rgba(0 0 0 / 20%);
+
+    &:last-child {
+      border-right: 2px solid rgba(0 0 0 / 20%);
+    }
+  }
+
+  &__value {
+    font-family: "Mona Sans", sans-serif;
+    font-weight: 500;
+    font-stretch: 125%;
+    font-size: clamp(40px, 27px + 3.5vw, 100px);
+    line-height: 0.8;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: clamp(12px, 10px + 0.5vw, 20px);
+    line-height: 1.2;
+  }
+}
+
+@include media-max(sm) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding-block: calc(var(--header-h) + 16px) 16px;
+
+    &__date {
+      order: 1;
+    }
+
+    &__title {
+      order: 2;
+      margin-block: clamp(32px, 5vw, 40px);
+    }
+
+    &__lead {
+      order: 3;
+      margin-bottom: clamp(26px, 5vw, 60px);
+    }
+
+    &__indicators {
+      order: 4;
+      margin-bottom: 12px;
+    }
+
+    &__button {
+      order: 5;
+      margin-block: auto clamp(12px, 5vw, 40px);
+    }
+
+    &__social {
+      width: 100%;
+      order: 6;
+    }
+
+    &__date,
+    &__button,
+    &__lead {
+      margin-inline: unset;
+    }
+
+    &__social,
+    &__indicators {
+      width: 100%;
+      align-self: flex-start;
+    }
+  }
+
+  .social {
+    &__list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 14px;
+    }
+  }
+
+  .indicators {
+    &__list {
+      gap: 30px;
+    }
+
+    &__item {
+      padding: 0;
+      border: none;
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}
