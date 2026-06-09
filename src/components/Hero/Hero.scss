@@ -60,6 +60,7 @@
   }
 
   @container hero-container (max-width: 1000px) {
+
     .hero__date,
     .hero__button,
     .hero__lead {
@@ -129,6 +130,17 @@
   &__item {
     width: clamp(20px, 5vw, 26px);
     aspect-ratio: 1;
+  }
+
+  &__link {
+    display: flex;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: scale 0.2s ease-in;
+
+    @include hover {
+      scale: 1.1;
+    }
   }
 }
 
